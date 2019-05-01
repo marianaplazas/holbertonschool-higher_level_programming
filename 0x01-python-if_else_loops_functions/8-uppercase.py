@@ -5,4 +5,4 @@ def uppercase(str):
         if c > '`' and c < '{':
             a = a - 32
         print('{}'.format(chr(a)), end="")
-    print(' ')
+    print("")
