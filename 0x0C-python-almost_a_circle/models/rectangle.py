@@ -94,16 +94,16 @@ class Rectangle(Base):
         'take arguments given by the user'
         if args:
             for key, value in enumerate(args):
-                if k == 0:
-                    self.id = v
-                if k == 1:
-                    self.width = v
-                if k == 2:
-                    self.height = v
-                if k == 3:
-                    self.x = v
-                if k == 4:
-                    self.y = v
+                if key == 0:
+                    self.id = value
+                if key == 1:
+                    self.width = value
+                if key == 2:
+                    self.height = value
+                if key == 3:
+                    self.x = value
+                if key == 4:
+                    self.y = value
         if args is None or len(args) == 0:
             for key, value in kwargs.items():
                 if key == "id":
