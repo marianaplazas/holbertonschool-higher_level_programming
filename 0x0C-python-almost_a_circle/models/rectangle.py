@@ -77,12 +77,42 @@ class Rectangle(Base):
         'define the area of a Rectangle'
         return(self.__width * self.__height)
 
-#    def display(self):
- #      'print the rectangle'
-  #     for b in range(self.__width):
-   #        for a in range(self.__height)
-           #missing print
+    def display(self):
+       'print the rectangle'
+       for b in range(self.__y):
+           print()
+        for a in range(self.__height):
+                print(" " * self.__x + "#" * self.__width)
 
     def __str__(self):
         'print'
-        return ("[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}".format(id, self.__x, self.__y, self.__width,self.__height))
+        return ("[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}".format(
+            self.id, self.__x, self.__y, 
+            self.__width,self.__height))
+
+    def update(self, *args, **kwargs):
+        'take arguments given by the user'
+        if args:
+            for key, value in enumerate(args):
+                if k == 0:
+                    self.id = v
+                if k == 1:
+                    self.width = v
+                if k == 2:
+                    self.height = v
+                if k == 3:
+                    self.x = v
+                if k == 4:
+                    self.y = v
+        if args is None or len(args) == 0:
+            for key, value in kwargs.items():
+                if key == "id":
+                    self.id = value
+                if key == "width":
+                    self.width = value
+                if key == "height":
+                    self.height = value
+                if key == "x":
+                    self.x = value
+                if key == "y":
+                    self.y = value
