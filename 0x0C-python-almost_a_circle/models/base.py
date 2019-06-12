@@ -73,7 +73,7 @@ class Base:
     @staticmethod
     def draw(list_rectangles, list_squares):
         'use the turtle'
-         for m in list_rectangles:
+        for m in list_rectangles:
             turtle.penup()
             turtle.home()
             turtle.color("yellow")
