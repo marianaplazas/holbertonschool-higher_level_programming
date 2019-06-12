@@ -5,6 +5,7 @@ this module is for create a base class
 
 
 import json
+import turtle
 
 
 class Base:
@@ -29,12 +30,12 @@ class Base:
     @classmethod
     def save_to_file(cls, list_objs):
         'save the file'
-        dic_objs = []
+        dict_objs = []
         filename = cls.__name__ + ".jsno"
         if list_objs is not None:
             for obj in list_objs:
-                dict_list.append(cls.to_dictionary(obj))
-        json_str = Base.to_json_string(dict_list)
+                dict_objs.append(cls.to_dictionary(obj))
+        json_str = Base.to_json_string(dict_objs)
         with open(filename, 'w+', encoding='utf-8') as f:
             f.write(json_str)
 
@@ -48,14 +49,17 @@ class Base:
     @classmethod
     def create(cls, **dictionary):
         'returns an instance with all attributes'
-        dummy = cls(6, 6, 6)
+        if cls.__name__ == "Square":
+            dummy = cls(1)
+        if cls.__name__ == "Rectangle":
+            dummy = cls(1, 1)
         dummy.update(**dictionary)
         return dummy
 
     @classmethod
     def load_from_file(cls):
         """Returns list of instances"""
-        filenamee = cls.__name__ + ".json"
+        filename = cls.__name__ + ".json"
         load = []
         try:
             with open(filename) as f:
@@ -65,3 +69,35 @@ class Base:
             return(load)
         except FileNotFoundError:
             return ([])
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        'use the turtle'
+         for m in list_rectangles:
+            turtle.penup()
+            turtle.home()
+            turtle.color("yellow")
+            turtle.setpos(m.x, m.y)
+            turtle.pendown()
+            turtle.forward(m.width)
+            turtle.left(90)
+            turtle.forward(m.height)
+            turtle.left(90)
+            turtle.forward(m.width)
+            turtle.left(90)
+            turtle.forward(m.height)
+           
+        for m in list_squares:
+            turtle.penup()
+            turtle.home()
+            turtle.color("blue")
+            turtle.setpos(m.x, m.y)
+            turtle.pendown()
+            turtle.forward(m.size)
+            turtle.left(90)
+            turtle.forward(m.size)
+            turtle.right(90)
+            turtle.forward(m.size)
+            turtle.right(90)
+            turtle.forward(m.size)
+        turtle.exitonclick()
