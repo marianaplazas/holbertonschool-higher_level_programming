@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 this module cotains the defition of a square
 """
