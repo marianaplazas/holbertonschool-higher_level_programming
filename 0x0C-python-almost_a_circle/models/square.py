@@ -24,13 +24,12 @@ class Square(Rectangle):
         self.width = value
         self.height = value
 
-
     def __str__(self):
         'print str'
         return ("[Square] ({:d}) {:d}/{:d} - {:d}".format(
             self.id, super().x, super().y, self.size))
 
-     def update(self, *args, **kwargs):
+    def update(self, *args, **kwargs):
         'update with args ad kwargs'
         if args:
             for key, value in enumerate(args):
@@ -52,7 +51,7 @@ class Square(Rectangle):
                         self.x = value
                     elif key == "y":
                         self.y = value
-                    
+
     def to_dictionary(self):
         'convert to dict'
         new_dic = {"id": self.id, "size": self.size, "x": self.x, "y": self.y}
