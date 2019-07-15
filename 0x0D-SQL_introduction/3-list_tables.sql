@@ -1,2 +1,2 @@
---list the tables passed a database 
+-- list the tables passed a database 
 SHOW tables;
