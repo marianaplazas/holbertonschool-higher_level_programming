@@ -2,20 +2,22 @@
 """
 filter the data
 """
+
 import MySQLdb
 from sys import argv
 
-if __name__ == "__main__":
-    name = sys.argv[1]
-    pwd = sys.argv[2]
-    data_name = sys.argv[3]
-    db = MySQLdb.connect(user=name, passwd=pwd, db=data_name,
-                         host="localhost", port=3306)
-    c = db.cursor()
-    c.execute("""SELECT * FROM states WHERE
-    name RLIKE '^[N]' ORDER BY id ASC""")
-    items = c.fetchall()
-    for a in items:
-        print(a)
+if __name__ == '__main__':
+    c = MySQLdb.connect(
+        host="localhost",
+        port=3306,
+        user=argv[1],
+        password=argv[2],
+        database=argv[3],)
+    cur = c.cursor()
+    cur.execute(
+        "SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC")
+    state_rows = cur.fetchall()
+    for state in state_rows:
+        print(state)
+    cur.close()
     c.close()
-    db.close()
