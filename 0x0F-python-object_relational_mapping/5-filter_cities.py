@@ -6,19 +6,17 @@ import MySQLdb
 from sys import argv
 
 if __name__ == "__main__":
-    name = sys.argv[1]
-    pwd = sys.argv[2]
-    data_name = sys.argv[3]
-    state = sys.argv[4]
-    db = MySQLdb.connect(user=username, passwd=pwd, db=name)
+    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1], passwd=argv[2], db=argv[3],)
     c = db.cursor()
-    cur.execute(
-        "SELECT cities.name FROM cities"
-        " WHERE state_id IN (SELECT states.id from states WHERE"
-        " name = '{}') ORDER BY cities.id ASC".format(state))
-    items = c.fetchall()
+
+    c.execute("SELECT cities.id, cities.name, states.name FROM\
+    cities INNER JOIN states ON cities.state_id = states.id WHERE\
+    states.name = %s ORDER BY cities.id ASC", (argv[4], ))
+
     cities = []
-    for a in items:
-        cities.append(a[1])
+    for row in c.fetchall():
+        cities.append(row[1])
     print(", ".join(cities))
+
+    c.close()
     db.close()
