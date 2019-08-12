@@ -12,7 +12,7 @@ if __name__ == "__main__":
     state = sys.argv[4]
     db = MySQLdb.connect(user=name, passwd=pwd, db=data_name)
     c = db.cursor()
-    c.execute("SELECT id, name FROM states WHERE name LIKE BINARY '{}' ORDER ASC""".format(argv[4]))
+    c.execute("""SELECT id, name FROM states WHERE name LIKE BINARY '{}' ORDER ASC""".format(argv[4]))
     items = c.fetchall()
     for a in items:
         print(item)
