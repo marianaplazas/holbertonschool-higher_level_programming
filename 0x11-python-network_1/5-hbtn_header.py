@@ -1,12 +1,11 @@
 #!/usr/bin/python3
 """
-header
+use only request
 """
-import urllib.request
-import sys
 
+from sys import argv
+import requests
 
 if __name__ == "__main__":
-    req = urllib.request.Request(sys.argv[1])
-    with urllib.request.urlopen(req) as response:
-        print(response.getheader('X-Request-Id'))
+    req = requests.get(argv[1])
+    print(req.headers.get('X-Request-Id'))
